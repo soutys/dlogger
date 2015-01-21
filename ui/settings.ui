@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SettingsDialog</class>
+ <widget class="QDialog" name="SettingsDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>430</width>
+    <height>310</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>430</width>
+    <height>310</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>430</width>
+    <height>310</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Settings</string>
+  </property>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QScrollArea" name="scroll_area">
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scroll_widget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>408</width>
+        <height>288</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="0" column="0">
+        <layout class="QVBoxLayout" name="vert_layout">
+         <item>
+          <layout class="QFormLayout" name="sett_form_layout">
+           <property name="fieldGrowthPolicy">
+            <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+           </property>
+           <item row="0" column="0">
+            <widget class="QLabel" name="file_lbl">
+             <property name="text">
+              <string>File</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <layout class="QHBoxLayout" name="file_horiz_layout">
+             <item>
+              <widget class="QLineEdit" name="file_edit">
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="file_sel">
+               <property name="text">
+                <string>Select...</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="mail_type_lbl">
+             <property name="text">
+              <string>Mailing type</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <layout class="QHBoxLayout" name="mail_horiz_layout">
+             <item>
+              <widget class="QRadioButton" name="mail_direct_btn">
+               <property name="text">
+                <string>direct</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QRadioButton" name="mail_smtp_btn">
+               <property name="text">
+                <string>via SMTP</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="email_lbl">
+             <property name="text">
+              <string>E-mail</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLineEdit" name="email_edit">
+             <property name="inputMethodHints">
+              <set>Qt::ImhEmailCharactersOnly</set>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="smtp_host_lbl">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>Hostname</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QLineEdit" name="smtp_host_edit">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="smtp_port_lbl">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>Port</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QLineEdit" name="smtp_port_edit">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="smtp_login_lbl">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>Login</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1">
+            <widget class="QLineEdit" name="smtp_login_edit">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="0">
+            <widget class="QLabel" name="smtp_passwd_lbl">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>Password</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="1">
+            <widget class="QLineEdit" name="smtp_passwd_edit">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="inputMethodHints">
+              <set>Qt::ImhHiddenText|Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText</set>
+             </property>
+             <property name="echoMode">
+              <enum>QLineEdit::Password</enum>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QDialogButtonBox" name="btn_box">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="standardButtons">
+            <set>QDialogButtonBox::Cancel|QDialogButtonBox::RestoreDefaults|QDialogButtonBox::Save</set>
+           </property>
+           <property name="centerButtons">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>file_edit</tabstop>
+  <tabstop>file_sel</tabstop>
+  <tabstop>mail_direct_btn</tabstop>
+  <tabstop>mail_smtp_btn</tabstop>
+  <tabstop>email_edit</tabstop>
+  <tabstop>smtp_host_edit</tabstop>
+  <tabstop>smtp_port_edit</tabstop>
+  <tabstop>smtp_login_edit</tabstop>
+  <tabstop>smtp_passwd_edit</tabstop>
+  <tabstop>btn_box</tabstop>
+  <tabstop>scroll_area</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>file_sel</sender>
+   <signal>pressed()</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>file_sel_open()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>394</x>
+     <y>38</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>425</x>
+     <y>33</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>mail_direct_btn</sender>
+   <signal>clicked()</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>mail_direct_select()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>135</x>
+     <y>70</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>430</x>
+     <y>71</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>mail_smtp_btn</sender>
+   <signal>clicked()</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>mail_smtp_select()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>303</x>
+     <y>61</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>0</x>
+     <y>61</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btn_box</sender>
+   <signal>rejected()</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>settings_cancel()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>77</x>
+     <y>270</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>94</x>
+     <y>308</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btn_box</sender>
+   <signal>accepted()</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>settings_save()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>269</x>
+     <y>286</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>277</x>
+     <y>306</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btn_box</sender>
+   <signal>clicked(QAbstractButton*)</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>settings_def_restore()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>364</x>
+     <y>280</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>419</x>
+     <y>304</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <signal>reset()</signal>
+  <slot>file_sel_open()</slot>
+  <slot>mail_direct_select()</slot>
+  <slot>mail_smtp_select()</slot>
+  <slot>settings_def_restore()</slot>
+  <slot>settings_save()</slot>
+  <slot>settings_cancel()</slot>
+ </slots>
+</ui>
