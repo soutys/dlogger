@@ -113,24 +113,43 @@ class DayLogger:
         Args:
             log_name - (optional) log filename to use
         '''
-        self.log_name = log_name
+        self._log_name = log_name
         self._need_new_log = False
         self._json_data = []
-        self.items = []
-        self.slugs = []
+        self._items = []
+        self._slugs = []
+
+
+    def set_log(self, log_name):
+        '''Sets (new) log name
+        '''
+        self._log_name = log_name
+
+
+    def get_log(self):
+        '''Gets current log name
+        '''
+        return self._log_name
+
+
+    def iter_slugs(self):
+        '''Iterates over current slugs
+        '''
+        for slug in self._slugs:
+            yield slug
 
 
     def load_log(self):
         '''Loads log
         '''
         try:
-            if not self.log_name:
-                self.log_name, same_day = get_last_log_name()
+            if not self._log_name:
+                self._log_name, same_day = get_last_log_name()
                 if same_day:
                     self._need_new_log = False
                 else:
                     self._need_new_log = True
-            self._json_data = read_log_data(self.log_name, 'r')
+            self._json_data = read_log_data(self._log_name, 'r')
         except (OSError, IOError, ValueError):
             self._need_new_log = True
             self._json_data = []
@@ -140,22 +159,22 @@ class DayLogger:
         '''Parses log's data
         '''
         try:
-            self.items, self.slugs = parse_items(self._json_data)
+            self._items, self._slugs = parse_items(self._json_data)
         except FileNotFoundError:
             self._need_new_log = True
-            self.items = []
-            self.slugs = []
+            self._items = []
+            self._slugs = []
 
         if self._need_new_log:
-            self.log_name = get_dt_str_by_fmt(LOG_NAME_FMT)
-            self.items = []
+            self._log_name = get_dt_str_by_fmt(LOG_NAME_FMT)
+            self._items = []
 
 
     def log_append(self, label):
         '''Appends line to the log
         '''
         item = [get_now_time(), label]
-        with open(self.log_name, 'a+') as fd_obj:
+        with open(self._log_name, 'a+') as fd_obj:
             log_item = [
                 get_dt_str_by_fmt(ITEM_DATETIME_FMT, dt_obj=item[0]),
                 item[1],
@@ -168,18 +187,21 @@ class DayLogger:
         '''Adds an item to the log
         '''
         item = self.log_append(label)
-        self.items.append(item)
-        self.slugs.insert(0, get_label_slug(label))
+        self._items.append(item)
+        slug = get_label_slug(label)
+        if slug in self._slugs:
+            self._slugs.remove(slug)
+        self._slugs.insert(0, slug)
 
 
     def render_stats(self):
         '''Renders statistics
         '''
         dt_now = get_now_time()
-        stats_dc = {slug: timedelta(0) for slug in self.slugs}
+        stats_dc = {slug: timedelta(0) for slug in self._slugs}
         dt_last = None
         slug_last = None
-        for dt_curr, label in self.items:
+        for dt_curr, label in self._items:
             slug_curr = get_label_slug(label)
 
             if dt_last and slug_last:
@@ -214,11 +236,11 @@ def main():
         dlog = DayLogger()
     dlog.load_log()
 
-    print('Latest log name:', dlog.log_name)
+    print('Latest log name:', dlog.get_log())
 
     dlog.parse_data()
 
-    print('*NEW* log name:', dlog.log_name)
+    print('*NEW* log name:', dlog.get_log())
 
     if len(os.sys.argv) >= 3:
         dlog.add_log_item(os.sys.argv[2])

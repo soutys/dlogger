@@ -26,11 +26,13 @@ or:
 
 # TBD
 
-* buttons - no log but real actions
+* minimize/close to tray
 
-* minimize to tray
+* settings:
 
-    * http://stackoverflow.com/a/758352
+    * use them :)
 
-    * http://pyqt.sourceforge.net/Docs/PyQt4/qsystemtrayicon.html
+    * save/cancel/reset buttons use
+
+    * restore @ startup
 
