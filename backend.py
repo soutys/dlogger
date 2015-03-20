@@ -52,7 +52,7 @@ def get_last_log_name():
     # just any logs?
     fn_mask = LOG_NAME_FMT.replace(DATE_FMT, '*').replace(LOG_NAME_TIME_FMT,
         '*')
-    filenames = glob(fn_mask)
+    filenames = sorted(glob(fn_mask))
     if filenames:
         return (filenames[-1], False)
     # no logs...
